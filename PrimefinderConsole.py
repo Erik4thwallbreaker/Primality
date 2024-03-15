@@ -21,7 +21,7 @@ def findSuperPrime(l):					#finds a prime P = 2rl+1 where l typically is a large
 	sqrtish = 2**( (arrlength.bit_length() + 1) // 2 )
 	while True:
 		print ':::::::::::'
-		print 'Vi kjorer liste #%d ' %r_0
+		print 'List #%d ' %r_0
 		worthTry = [True] * arrlength		#Array over likely r1 values
 		for p in range(3, sqrtish, 2):
 			print ' ----p = %d' %p
@@ -34,9 +34,9 @@ def findSuperPrime(l):					#finds a prime P = 2rl+1 where l typically is a large
 				print 'r1 = %d' %r1
 				worthTry[r1] = False
 				r1 += p
-		print 'vi soker med Soloway Strassen'
+		print 'Searching by Soloway Strassen method'
 		for r1 in range(0, arrlength):
-			print 'I posisjon %d' %r1
+			print 'Position number  %d' %r1
 			if worthTry[r1]:
 				print 'likely value i r1 = %d' %r1
 				z = 2*(r_0+r1)*l + 1
@@ -117,8 +117,11 @@ def rSidePower(a,z):
 		crt = (crt*crt) % z
 	return po
 
-a = findPrime(1000)
-print a
+a = findPrime(100)
+# print a
 b = findSuperPrime(a)
+print ' '
 print b
-
+print 'Is probably a large prime. Its multiplicative group order has the factor'
+print a
+print 'Which is also probably a large prime'

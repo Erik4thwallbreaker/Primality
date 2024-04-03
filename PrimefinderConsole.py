@@ -5,24 +5,17 @@ That is p-1 could also be made divisible by a large prime.
 
 This is done in to steps creating first the p-1 divisor,
 then then p itself, both first by sieving, and then testing
-likely prime values probabilistically with the Soloway Strassen method.
-
-Want this to be overloaded to a really large integer class
-
-Memory Usage: O(ln n)
-Time Complexity: Yet to be computed
-
-Cheers! """
+likely prime values probabilistically with the Soloway Strassen method. """
 
 #Still in bug test
-def findSuperPrime(l):					#finds a prime P = 2rl+1 where l typically is a large prime
+def findSuperPrime(l):																#finds a prime P = 2rl+1 where l typically is a large prime
 	arrlength = 3*l.bit_length()
-	r_0 = 1						#r = r_0 + r1
+	r_0 = 1																			#r = r_0 + r1
 	sqrtish = 2**( (arrlength.bit_length() + 1) // 2 )
 	while True:
 		print ':::::::::::'
 		print 'List #%d ' %r_0
-		worthTry = [True] * arrlength		#Array over likely r1 values
+		worthTry = [True] * arrlength												#Array over likely r1 values
 		for p in range(3, sqrtish, 2):
 			print ' ----p = %d' %p
 			r1 = 0
@@ -45,12 +38,12 @@ def findSuperPrime(l):					#finds a prime P = 2rl+1 where l typically is a large
 				print '%d ikke funnet til aa vaere prime' %z
 		r_0 += arrlength
 
-def findPrime(startInt):				#Routine for searching for primes
-	arrlength = 2*startInt.bit_length()		#Looking in 2*log(n) interval. NB: Decides memory needed asymptotically!
+def findPrime(startInt):															#Routine for searching for primes
+	arrlength = 2*startInt.bit_length()												#Looking in 2*log(n) interval. NB: Decides memory needed asymptotically!
 	crtStartInt = startInt
 	sqrtish = 2**( (arrlength.bit_length() + 1) // 2 )
 	while True:					
-		worthTry = [True] * arrlength		#An array over numbers to look for primes
+		worthTry = [True] * arrlength												#An array over numbers to look for primes
 		for p in range(2, sqrtish):
 			nullerPos = -crtStartInt % p
 			while nullerPos < arrlength:
@@ -63,10 +56,10 @@ def findPrime(startInt):				#Routine for searching for primes
 					return (z)
 		crtStartInt += arrlength
 
-def eratosthenes(maxInt):				#finds all primes up to, and not including maxInt
+def eratosthenes(maxInt):															#finds all primes up to, and not including maxInt
 	worthTry = [True] * maxInt
 	primelist = []
-	sqrtish = 2**( (maxInt.bit_length() + 1) // 2 ) #this seems a bit slow, but since sqrt(maxInt) will be low, it shouldnt matter
+	sqrtish = 2**( (maxInt.bit_length() + 1) // 2 )									 #this seems a bit slow, but since sqrt(maxInt) will be low, it shouldnt matter
 	for x in range(2,sqrtish):
 		if worthTry[x]:
 			primelist.append(x)
@@ -79,7 +72,7 @@ def eratosthenes(maxInt):				#finds all primes up to, and not including maxInt
 			primelist.append(x)
 	return primelist
 
-def testPrime(z):					#implement soloway strassen method
+def testPrime(z):																	#implement soloway strassen method
 	for i in range(0,100):
 		a = random.randint(1,z)
 		if jacobianSymbol(a,z) % z != rSidePower(a,z) % z:
